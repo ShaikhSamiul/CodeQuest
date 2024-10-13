@@ -1,0 +1,19 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment directories
+venv/
+env/
+.env
+
+# Ignore local configuration files (if applicable)
+*.local
+*.log
+
+# Ignore unnecessary directories or files that are not needed for deployment
+tests/
+docs/
+examples/
+temp/
+temporary/
