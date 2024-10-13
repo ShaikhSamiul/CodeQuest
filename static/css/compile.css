@@ -1,0 +1,445 @@
+/* Light Theme */
+body.light-theme {
+    background-color: #f5f5f5;
+    color: #333;
+}
+body.light-theme textarea,
+body.light-theme pre,
+body.light-theme .output-box,
+body.light-theme .resizable-box {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #1c1c1c;
+    color: #f5f5f5;
+}
+body.dark-theme textarea,
+body.dark-theme pre,
+body.dark-theme .output-box,
+body.dark-theme .resizable-box  {
+    background-color: #2e2e2e;
+    color: #f5f5f5;
+}
+
+/* Global Styles */
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    /* overflow: hidden; */
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: transparent;
+}
+
+/* Theme Switcher */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+.theme-switch input {
+    display: none;
+}
+/* General styles for the slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2c3e50; /* Dark mode (moon color) */
+    transition: 0.4s;
+    border-radius: 34px;
+    display: flex;
+    justify-content: center; /* Center by default */
+    align-items: center; /* Vertically center */
+    font-size: 12px;
+    padding: 0; /* Remove any padding */
+}
+
+/* Moon (Dark Mode) */
+.slider:before {
+    content: "\1F319"; /* Unicode for crescent moon */
+    color: white;
+    transition: 0.4s;
+    font-size: 16px;
+}
+
+/* Light Mode (Sun Symbol) */
+input:checked + .slider {
+    background-color: #f1c40f; /* Light mode (sun color) */
+    justify-content: center; /* Keep the symbol centered */
+}
+
+/* Change the symbol when checked (Light Mode) */
+input:checked + .slider:before {
+    content: "\2600"; /* Unicode for sun */
+    color: white;
+}
+
+/* Layout */
+.main-container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+    align-items: stretch;
+    width: 100%;
+    min-width: 0; /* Prevent content overflow issues */
+}
+
+.resizable-box {
+    background-color: #f0f0f0; /* Light background for visibility */
+    width: 250px; /* Initial width of the resizable box */
+    /* min-width: 150px; Minimum width to prevent it from getting too small */
+    /* max-width: 400px; Maximum width */
+    /* resize: horizontal; Allow horizontal resizing only */
+    overflow: auto; /* Handle overflow if the content is too big */
+    padding: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc; /* Border to separate the box from the content area */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 0; /* Prevent content overflow issues */
+    top: 37px; /* Adjust this value to position the box lower from the top */
+}
+
+.resizable-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 10px; /* Width of the invisible resize area */
+    cursor: ew-resize; /* Cursor changes to indicate horizontal resizing */
+    background: transparent; /* Keep it invisible */
+}
+
+.content-area {
+    flex-grow: 1; /* Take the remaining space */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Prevent content overflow issues */
+    max-width: calc(100% - 20px);
+}
+
+/* Editor and Output Box */
+#editor {
+    height: 400px; /* Set an appropriate height for the editor */
+    border: 1px solid #ccc;
+    resize: vertical; /* Allows vertical resizing */
+    overflow: auto;
+    flex-grow: 1; /* Adds scrollbars when necessary */
+}
+
+.output-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 100px;
+    overflow-y: auto;
+    white-space: pre-wrap; /* Maintains whitespace formatting */
+    background-color: #f5f5f5;
+    margin-top: 20px;
+}
+
+/* Align heading, dropdown, and button */
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.heading-container h1 {
+    margin: 0;
+}
+.heading-container select {
+    margin-right: 10px;
+}
+.heading-container button {
+    margin-left: auto;
+}
+
+#question-desription{
+    font-size: x-small;
+}
+
+/* Run Button */
+body.light-theme .button-89 {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #373B44;
+    
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+  
+    border: 0;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  body.light-theme .button-89:hover,
+  body.light-theme .button-89:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+  }
+  
+  body.light-theme .button-89:active {
+        background: var(--color);
+        color: #fff;
+}
+
+body.light-theme #language {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #373B44;
+    
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+  
+    border: 0;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    appearance: none;
+  }
+  
+  body.light-theme #language:hover,
+  body.light-theme #language:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+  }
+  
+  body.light-theme #language:active {
+        background: var(--color);
+        color: #fff;
+}
+
+
+
+
+body.dark-theme .button-89 {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #e8eaf0;
+    
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+  
+    border: 0;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  body.dark-theme .button-89:hover,
+  body.dark-theme .button-89:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+  }
+  
+  body.dark-theme .button-89:active {
+    background: var(--color);
+    color: #fff;
+  }
+
+  body.dark-theme #language {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #e8eaf0;
+    
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+  
+    border: 0;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+    appearance: none;
+  }
+  
+  body.dark-theme #language:hover,
+  body.dark-theme #language:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+  }
+  
+  body.dark-theme #language:active {
+    background: var(--color);
+    color: #fff;
+  }
+
+body.dark-theme a{
+    color: #ffa600;
+    text-decoration: none;
+}
+
+
+body.light-theme a{
+    color: cornflowerblue;
+    text-decoration: none;
+}
+
+body.dark-theme option{
+    background: #333;
+    color: white
+}
+
+
+body.light-theme option{
+    background: white;
+    color: black
+}
+
+
+
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* Button styles */
+button {
+    background-color: #ffa600; /* Default button color */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffa600; /* Darker green on hover */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Background blur */
+    backdrop-filter: blur(5px);
+    z-index: 1000; /* Ensure it is on top */
+}
+
+#msgOverlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay background */
+    z-index: 1000; /* Make sure it appears above other elements */
+}
+
+.msg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Light theme background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Light theme styles */
+.light-theme .msg-container {
+    background-color: white;
+    color: black; /* Text color for light theme */
+}
+
+.light-theme button {
+    background-color: #f9f9f9; /* Input background for light theme */
+    color: black; /* Input text color for light theme */
+
+}
+
+.dark-theme .msg-container {
+    background-color: #333; /* Background for dark theme */
+    color: white; /* Text color for dark theme */
+}
+
+.dark-theme button {
+    background-color: #555; /* Input background for dark theme */
+    color: white; /* Input text color for dark theme */
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

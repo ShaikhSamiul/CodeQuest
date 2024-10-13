@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest || Home Page</title>
+    <!-- <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}"> -->
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
+</head>
+<body class="dark-theme">
+    
+    <div class="navbar">
+        <div class="logo">
+            <a href="" id='logo_link'><img src="/static/images/CodeQuest.png" id="logo_img" 
+                style="height: 7.5vh;
+                border-radius: 100px;
+                background-color: #333;">
+            </a>
+        </div>
+        {% if 'user' in session %}  
+        <div>
+            <a href="{{ url_for("questions") }}">Back to Question Page</a>
+        </div>
+        <a id="logoutBtn"  href="/logout">Log Out</a>
+        {% else %}
+        <a id="signupBtn" >Sign Up</a>
+        <a id="loginBtn" >Login</a>
+        {% endif %}
+        
+        <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Floating Sign Up Form -->
+    <div class="form-box" id="signupForm">
+        <span class="close-btn" id="closeSignupBtn">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signupFormInner" method="post" action="/signup">
+            <input type="text" name="username" id="signup-username" placeholder="Username" required>
+            <span id="available"></span>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <span id="available-email"></span>
+            <input type="password" id="signup-password" name="password" placeholder="Password" required>
+            <input type="password" id="cnf-password" name="cnf-password" placeholder="Confirm Password" required>
+            <span id="password-check"></span>
+            <button type="submit">Sign Up</button>
+            <p class="login-link">Already a user? <a id="loginLink">Login here</a></p>
+        </form>
+    </div>
+
+    <!-- Floating Login Form -->
+    <div class="form-box" id="loginForm">
+        <span class="close-btn" id="closeLoginBtn">&times;</span>
+        <h2>Login</h2>
+        <form method="POST" action="/questions">
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <button id="submitLoginBtn">Login</button> <!-- Separate button for submission -->
+        </form>
+        <p class="signup-link">Don't have an account? <a id="signupLink">Sign up here</a></p>
+    </div>
+    
+
+
+
+    <div class="slideshow-container">
+        <!-- Images with caption overlay -->
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/ccc.jpg') }}" alt="Image 1">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/questions.jpg') }}" alt="Image 2">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/compile.jpeg') }}" alt="Image 3">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/gemini.jpeg') }}" alt="Image 4">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/discussions.jpg') }}" alt="Image 5">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/comment.jpeg') }}" alt="Image 6">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/profile.jpg') }}" alt="Image 7">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/leadearboard.jpeg') }}" alt="Image 8">
+        </div>
+        <div class="mySlides">
+            <img src="{{ url_for('static', filename='photos/home-bgs/logo.jpg') }}" alt="Image 9">
+        </div>
+        
+        <!-- Custom navigation arrows -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    
+
+
+    <script src="{{ url_for('static', filename='script/info.js') }}"></script>
+    
+</body>
+</html>

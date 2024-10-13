@@ -1,0 +1,178 @@
+{% extends "navbar.html" %} {% block title %}Discussions Page{% endblock %}
+{% block head %} {{ super() }}
+<!-- Include the base head content -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/discussions.css') }}"
+/>
+
+{% endblock %} {% block content %}
+  <body class="light-theme">
+
+    <div class="container">
+      <div class="ask-question-btn" onclick="toggleFloatingForm()">
+        <span>+</span>
+      </div>
+      <div class="discussion-container">
+        <h1>Discussions Page</h1>
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search questions..."
+            oninput="filterQuestionsBySearch()"
+          />
+        </div>
+
+        {% for query in queries %}
+        <a href="{{ url_for('comments', query_id = query.query_id) }}" class="discussion-link">
+        <div class="discussion-box" language="{{ query.language_id }}">
+          <div class="query-details">
+            <div class="discussion-title">{{ query.query }}</div>
+            <div class="username">{{ query.username }}</div>
+          </div>
+          <div class="query-language" >
+            {% if (query.language_id== 0) %}
+            <img id="general_logo" class="general_logo" src="/static/images/General_Logo_White.png" alt="General">
+            {% elif (query.language_id== 1) %}
+            <img src="/static/images/Python_Logo.png" alt="Python">
+            {% elif (query.language_id== 2) %}
+            <img src="/static/images/Java_Logo.png" alt="Java">
+            {% elif (query.language_id== 3) %}
+            <img src="/static/images/C++_Logo.png" alt="C++">
+            {% else %}
+            <img src="" alt="Chaman image to daal de language kaaa.!!!">
+            {% endif %}
+          </div>
+
+        </div>
+      </a>
+        {% endfor %}
+      </div>
+
+      <!-- Difficulty Filter -->
+      <div class="filter-container">
+        <div class="filter-by-lang-box">
+          <h2 id="filter-by-lang-title">Filter by Language</h2>
+          <div class="filter-by-lang-values">
+
+            <div class="checkbox-wrapper-28">
+              <input
+                id="general"
+                value=0
+                type="checkbox"
+                class="promoted-input-checkbox languageFilter"
+              />
+              <svg><use xlink:href="#checkmark-28" /></svg>
+              <label for="general"> General </label>
+              <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+                <symbol id="checkmark-28" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-miterlimit="10"
+                    fill="none"
+                    d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                  ></path>
+                </symbol>
+              </svg>
+            </div>
+
+            <div class="checkbox-wrapper-28">
+              <input
+                id="python"
+                value=1
+                type="checkbox"
+                class="promoted-input-checkbox languageFilter"
+              />
+              <svg><use xlink:href="#checkmark-28" /></svg>
+              <label for="python"> Python </label>
+              <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+                <symbol id="checkmark-28" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-miterlimit="10"
+                    fill="none"
+                    d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                  ></path>
+                </symbol>
+              </svg>
+            </div>
+
+            <div class="checkbox-wrapper-28">
+              <input
+                id="java"
+                value=2
+                type="checkbox"
+                class="promoted-input-checkbox languageFilter"
+              />
+              <svg><use xlink:href="#checkmark-28" /></svg>
+              <label for="java"> Java </label>
+              <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+                <symbol id="checkmark-28" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-miterlimit="10"
+                    fill="none"
+                    d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                  ></path>
+                </symbol>
+              </svg>
+            </div>
+            <div class="checkbox-wrapper-28">
+              <input
+                id="cpp"
+                value=3
+                type="checkbox"
+                class="promoted-input-checkbox languageFilter"
+              />
+              <svg><use xlink:href="#checkmark-28" /></svg>
+              <label for="cpp"> C++ </label>
+              <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+                <symbol id="checkmark-28" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-miterlimit="10"
+                    fill="none"
+                    d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                  ></path>
+                </symbol>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="overlay" id="askQuestionOverlay">
+          <div class="form-container">
+            <button class="close-btn" onclick="closeAskQuestion()">×</button>
+            <h2>Ask a Question</h2>
+            <form id="askQuestionForm" action="submitQuery" method="POST">
+              <textarea placeholder="Your Question" required style="height:100px;" name="query" id="query"></textarea>
+                <div style="display: flex; gap: 10px; margin: 10px 0;">
+                  <input type="radio" name="language" value="0" required>
+                  <label>
+                    <img id="general_logo_form" class="general_logo_form" src="/static/images/General_Logo_White.png" alt="General">
+                  </label>
+                  <input type="radio" name="language" value="1">
+                  <label>
+                    <img src="/static/images/Python_Logo.png" class="language-option">
+                  </label>
+                  <input type="radio" name="language" value="2">
+                  <label>
+                    <img src="/static/images/Java_Logo.png" class="language-option">
+                  </label>
+                  <input type="radio" name="language" value="3">
+                  <label>
+                    <img src="/static/images/C++_Logo.png" class="language-option">
+                  </label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>  
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script/discussions.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/navbar.js') }}"></script>
+  </body>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "navbar.html" %} {% block title %}Questions Catalogue{% endblock %}
+{% block head %} {{ super() }}
+<!-- Include the base head content -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/questions.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<body class="">
+  <div class="container">
+    <div class="question-container">
+      <h1>Questions Page</h1>
+
+      {% for question in questions %}
+      <div
+        class="question-box"
+        data-question-id="{{ question[0].question_id }}"
+        data-difficulty="{{ question[1].difficulty_value }}"
+        id="questionBox"
+        
+      >
+        <!-- Question Box -->
+
+        <a href="{{ url_for('compiler', question_id = question[0].question_id) }}">
+        <div class="title-container">
+            <div class="question-title">{{ question[0].question_title }}</div>
+            <span class="difficulty">
+              {% if question[1].difficulty_value == "Easy" %}
+              <p style="color: #53e853">{{ question[1].difficulty_value }}</p>
+              {% elif question[1].difficulty_value == "Medium" %}
+              <p style="color: #e2d403">{{ question[1].difficulty_value }}</p>
+              {% elif question[1].difficulty_value == "Hard" %}
+              <p style="color: #ff2c2c">{{ question[1].difficulty_value }}</p>
+              {% else %} {{ question[1].difficulty_value }} {% endif %}
+            </span>
+          </div>
+        </a>
+        <div class="question-description">{{ question[0].question_description }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Difficulty Filter & Search Bar -->
+    <div class="filter-container">
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Search questions..."
+          oninput="filterQuestionsBySearch()"
+        />
+      </div>
+
+      <div class="filter-by-difficulty difficulty-box">
+        <h2 id="filter-by-difficulty-title">Difficulty</h2>
+        <div class="filter-by-difficulty-values">
+          <div class="checkbox-wrapper-28">
+            <input
+              id="easy"
+              value="Easy"
+              type="checkbox"
+              class="promoted-input-checkbox difficultyFilter"
+            />
+            <svg><use xlink:href="#checkmark-28" /></svg>
+            <label for="easy"> Easy </label>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+              <symbol id="checkmark-28" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  fill="none"
+                  d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                ></path>
+              </symbol>
+            </svg>
+          </div>
+
+          <div class="checkbox-wrapper-28">
+            <input
+              id="medium"
+              value="Medium"
+              type="checkbox"
+              class="promoted-input-checkbox difficultyFilter"
+            />
+            <svg><use xlink:href="#checkmark-28" /></svg>
+            <label for="medium"> Medium </label>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+              <symbol id="checkmark-28" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  fill="none"
+                  d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                ></path>
+              </symbol>
+            </svg>
+          </div>
+
+          <div class="checkbox-wrapper-28">
+            <input
+              id="hard"
+              value="Hard"
+              type="checkbox"
+              class="promoted-input-checkbox difficultyFilter"
+            />
+            <svg><use xlink:href="#checkmark-28" /></svg>
+            <label for="hard"> Hard </label>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+              <symbol id="checkmark-28" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  fill="none"
+                  d="M22.9 3.7l-15.2 16.6-6.6-7.1"
+                ></path>
+              </symbol>
+            </svg>
+          </div>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script/questions.js') }}"></script>
+  <script src="{{ url_for('static', filename='script/navbar.js') }}"></script>
+</body>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comments.css') }}">
+</head>
+<body class="light-theme">
+    
+    <div class="navbar">
+        <a href="/discussions">&larr; Back To Discussions Page</a>
+        <label class="theme-toggle">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    
+    <!-- <div class="theme-toggle">
+        <a href="/discussions">&larr; Back To Discussions Page</a>
+        <label class="switch">
+            <input type="checkbox" id="themeSlider">
+            <span class="slider round"></span>
+        </label>
+    </div> -->
+
+    <div class="discussion-container">
+        <main class="chat-area">
+            <!-- Displaying the question at the top -->
+            <div class="question" id ="qid" queryId = "{{ queryId }}">
+                <div>
+                <h2>Question: {{ query.query }}</h2>
+                </div>
+                <div id="user-details">
+                    {% if(asker) %}
+                    <button onclick="deleteQuery()" id="delete-button">X</button>
+                    {% endif %}
+                    <br><br><span id="asker">Asked By: {{ query.username }}<span>
+            </div>
+                
+            </div>
+            
+            <!-- Comments section below the question -->
+            <div class="messages">
+                {% for comment in comments %}
+                <div class="message">
+                    <span class="username">{{ comment.username }}</span> 
+                    <div class="comm">{{ comment.comment }}</div>
+                </div>
+                {% endfor %}
+                
+                <div class="message">
+                    <span class="username">User1:</span>
+                    <div class="comm">EXTRAAASSSZZZ</div>
+                </div>
+                <div class="message">
+                    <span class="username">User2:</span>
+                    <div class="comm">EXTRAAASSSZZZ</div>
+                </div>
+                <div class="message">
+                    <span class="username">User1:</span>
+                    <div class="comm">EXTRAAASSSZZZ</div>
+                </div>
+                
+                
+            </div>
+
+            <!-- Input box for new comments -->
+            <div class="input-box">
+                <input type="text" id="commentBox" placeholder="Type your comment...">
+                <button onclick="sendComment()" role="button">Send</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script/comments.js') }}"></script>
+</body>
+</html>
+
+<!--This works with "open with live server" but the redirection from query box to this page isnt working :'(-->

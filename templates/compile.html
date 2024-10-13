@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest || Compiler</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/compile.css') }}">
+
+</head>
+<body class="light-theme">
+    <div class="navbar">
+        <a href="/questions">&larr; Back To Questions Page</a>
+        <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div class="main-container">
+        <div class="resizable-box" id="resizableBox">
+            <!-- Display the question title -->
+            <h2 id="question-title" qID = "{{ qID }}" >{{ title }}</h2>
+            <p id="question-description">{{ description }}</p>
+        </div>
+        
+        <div class="content-area">
+            <div class="heading-container">
+                <h1>Online Compiler</h1>
+                <div>
+                    <select id="language" class="custom-select">
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                    </select>
+                    
+                    <button onclick="runCode()" class="button-89" role="button">Run Code</button>
+                    <button onclick="submitCode()" class="button-89" role="button">Submit Code</button>
+                </div>
+            </div>
+        
+            <div id="editor"></div>
+            <br>
+        
+            <label for="output">Output:</label>
+            <div id="output" class="output-box"></div>
+        </div>
+        <div class="overlay" id="msgOverlay">
+            <div class="msg-container">
+                <button class="close-btn" onclick="closeMsg()">×</button>
+              <h2>Your Result</h2>
+                <p id="isTrue"></p>
+                <p id="hint"></p>
+                <button onclick="submitSolution()" id="submit-solution" value="Submit Solution">Submit Solution</button>
+            </div>
+          </div>
+    </div>
+    <script src="{{ url_for('static', filename='script/compile.js') }}"></script>
+</body>
+</html>

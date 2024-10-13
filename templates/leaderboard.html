@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/leaderboard.css') }}" />
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="/profile">&larr; Back to Profile Page</a>
+        </div>
+        
+        <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <div class="Top3Cards">
+        <div class="card">
+            <h1>{{users[0].username}}</h1>
+            <h2>Score: {{users[0].total_score}}</h2>
+            
+        </div>
+        <div class="card">
+            <h1>{{users[1].username}}</h1>
+            <h2>Score: {{users[1].total_score}}</h2>
+            
+        </div>
+        <div class="card">
+            <h1>{{users[2].username}}</h1>
+            <h2>Score: {{users[2].total_score}}</h2>
+            
+        </div>
+    </div>
+
+    
+
+    <div class="scoreTable">
+        <div class="row header">
+            <div class="cell">Rank</div>
+            <div class="cell">Name</div>
+            <div class="cell">Score</div>
+            
+        </div>
+        {% for i in range(3,10): %}
+        <div class="row">
+            <div class="cell">{{i+1}}</div>
+            <div class="cell">{{users[i].username}}</div>
+            <div class="cell">{{users[i].total_score}}</div>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <script src="{{ url_for('static', filename='script/leaderboard.js') }}"></script>
+</body>
+</html>
+
+
+<!-- 
+{% for user in users %}
+                <div class="leaderboard-user">
+                    <span>{{ user.username }}</span>
+                    <span>{{ user.total_score }}</span>
+                </div>
+                {% endfor %}
+-->

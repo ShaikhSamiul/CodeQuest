@@ -1,0 +1,74 @@
+{% extends "navbar.html" %} {% block title %}Profile{% endblock %}
+{% block head %} {{ super() }}
+<!-- Include the base head content -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/profile.css') }}"
+/>
+{% endblock %}
+{% block content %}
+<body class="light-theme">
+    <div class="content-wrapper">
+        <!-- <div class="main-content">
+            <h1>Profile Page</h1>
+            <p>This is where users can view their profile.</p>
+        </div> -->
+        <div class="align">
+            <div class="details">
+                <h2>User Details</h2>
+                <form id="detailsForm">
+                    <label for="username">Username:</label>
+                    <input type="username" id="username" value={{ session['user'] }} readonly />
+                    <label for="email">Email:</label>
+                    <input type="email" id="current-email" value="{{email}}" readonly />
+                    <button type="button" id="editButton" onclick="toggleFloatingEdit()">Edit</button>
+                    <!-- <button type="submit" id="saveButton" style="display: none;">Save</button> -->
+                </form>
+            </div>
+
+            <!-- Floating Edit Form Overlay -->
+            <div id="editFormOverlay" class="overlay" style="display: none;">
+                <!-- <h2>Edit Form</h2> -->
+                <div class="floating-form">
+                    <h2>Edit User Details</h2>
+                    <form id="editForm">
+                        <label id="cpLabel" for="current-password">Current Password:</label>
+                        <input type="password" id="current-password" value="" />
+                        <input type="text" name="username" id="signup-username" placeholder="Username" required>
+                        <span id="available"></span>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <span id="available-email"></span>
+                        <input type="password" id="signup-password" name="password" placeholder="Password" required>
+                        <input type="password" id="cnf-password" name="cnf-password" placeholder="Confirm Password" required>
+                        <span id="password-check"></span><br>
+                        <button id="validatePasswordButton" type="button" onclick="validatePassword()">Validate</button>
+                        <button id ="saveButton" type="button" onclick="saveDetails()">Save</button>
+                        <button type="button" onclick="closeEditForm()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- History/scoreboard card -->
+             <div class="HScard">
+                <h2>User Progress</h2>
+                <p>Total Questions Answered: {{answeredQuestions}}</p>
+                <p>Total Points Scored: {{score}}</p>
+                <p>Wanna know where you stand? Click below to find out</p>
+                <a href="/leaderboard"><button >Leaderboards</button></a>
+                <!--<button id="ScoreboardButton" onclick="toggleAnsweredQuestions()">AnsweredQuestions</button>-->
+             </div>
+             <!-- Floating Answered Questions Overlay -->
+            <div id="answeredQuestionsOverlay" class="overlay" style="display: none;">
+                <div class="floating-form">
+                    <h2>Calendar Format</h2>
+                    <p>This section will display a calendar of answered questions.</p>
+                    <button type="button" onclick="closeAnsweredQuestions()">Close</button>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <script src="{{ url_for('static', filename='script/profile.js') }}"></script>
+</body>
+{% endblock %}
