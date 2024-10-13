@@ -9,10 +9,12 @@ from models import engine,User,Solution,Question,Query,Language,Difficulty,Solut
 from sqlalchemy.orm import sessionmaker
 from flask_mysqldb import MySQL
 from sqlalchemy import func
+import pymysql
+pymysql.install_as_MySQLdb()
 
 piston = PistonApp()
-genai.configure(api_key="AIzaSyAhV_8PlrMYS4PjquhF0RqrshWMkke1jiI")
-#genai.configure(api_key=os.environ["API_KEY"])
+# genai.configure(api_key="AIzaSyAhV_8PlrMYS4PjquhF0RqrshWMkke1jiI")
+genai.configure(api_key=os.environ.get("GENAI_API_KEY"))
 model = genai.GenerativeModel("gemini-1.5-flash")
 app = Flask(__name__)
 
@@ -20,10 +22,15 @@ app.secret_key = 'codequest'
 Session = sessionmaker()
 sql_session = Session(bind=engine)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'codequest'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'codequest'
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST')
+app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB')
+
 
 mysql = MySQL(app)
 
