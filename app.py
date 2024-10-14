@@ -516,6 +516,11 @@ def deleteQuery():
     else:
         return jsonify(success=False), 401
 
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # Return an empty response with HTTP status 204 (No Content)
+
+
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
 
