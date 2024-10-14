@@ -6,7 +6,8 @@
             "src": "app.py",
             "use": "@vercel/python",
             "config": {
-                "maxLambdaSize": "50mb"
+                "maxLambdaSize": "50mb",
+                "installCommand": "bash install.sh"
             }
         }
     ],
