@@ -9,8 +9,8 @@ from models import engine,User,Solution,Question,Query,Language,Difficulty,Solut
 from sqlalchemy.orm import sessionmaker
 from flask_mysqldb import MySQL
 from sqlalchemy import func
-# from abc import abstractproperty, ABC
-from collections.abc import Callable, ABC, abstractproperty
+from abc import abstractproperty, ABC
+
 import pymysql
 pymysql.install_as_MySQLdb()
 
