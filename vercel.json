@@ -4,7 +4,7 @@
     "builds": [
         {
             "src": "app.py",
-            "use": "@vercel/python@3.11",
+            "use": "@vercel/python",
             "config": {
                 "maxLambdaSize": "50mb"
             }
