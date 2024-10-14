@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeQuest || {% block title %}{% endblock %}</title>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    
     <link
   rel="stylesheet"
   href="{{ url_for('static', filename='css/navbar.css') }}"
@@ -25,7 +25,7 @@
                 background-color: #333;">
             </a>
         </div>
-        <div class="nav-links" onclick="theme()">
+        <div class="nav-links" onclick="">
             <a href="{{ url_for('questions') }}" class="{% if request.endpoint == 'questions' %}active{% endif %}">Questions</a>
             <a href="{{ url_for('discussions') }}" class="{% if request.endpoint == 'discussions' %}active{% endif %}">Discussions</a>
             <a href="{{ url_for('profile') }}" class="{% if request.endpoint == 'profile' %}active{% endif %}">Profile</a>
