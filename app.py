@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from flask_mysqldb import MySQL
 from sqlalchemy import func
 from abc import abstractproperty, ABC
+from typing_extensions import Callable
 import pymysql
 pymysql.install_as_MySQLdb()
 
