@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest || {% block title %}{% endblock %}</title>
+    
+    
+    <link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/navbar.css') }}"
+/>
+    {% endblock %}
+</head>
+<body class="dark-theme">
+    <div class="navbar">
+        <!-- <div class="fire-streak">
+            <img src="fire-icon.png" alt="Fire" class="fire-icon">
+        </div> -->
+        <div>
+            <a href="{{ url_for("info") }}" id='logo_link'><img src="/static/images/CodeQuest.png" id="logo_img" 
+                style="height: 7.5vh;
+                border-radius: 100px;
+                background-color: #333;">
+            </a>
+        </div>
+        <div class="nav-links" onclick="">
+            <a href="{{ url_for('questions') }}" class="{% if request.endpoint == 'questions' %}active{% endif %}">Questions</a>
+            <a href="{{ url_for('discussions') }}" class="{% if request.endpoint == 'discussions' %}active{% endif %}">Discussions</a>
+            <a href="{{ url_for('profile') }}" class="{% if request.endpoint == 'profile' %}active{% endif %}">Profile</a>
+        </div>
+        
+
+        <label class="theme-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='script/navbar.js') }}"></script>
+</body>
+</html>
