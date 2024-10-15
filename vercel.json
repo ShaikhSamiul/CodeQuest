@@ -3,10 +3,8 @@
     "builds": [
         {
             "src": "app.py",
-            "use": "@vercel/python",
-            "config": {
-                "buildCommand": "pip install -r requirements.txt -c constraints.txt && pip uninstall -y typing"
-            }
+            "use": "@vercel/python"
+            
         }
     ],
     "routes": [
