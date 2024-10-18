@@ -99,16 +99,22 @@ document.addEventListener('mouseup', function() {
 
 
 async function runCode() {
+    const url = 'https://emkc.org/api/v2/piston/execute';
     const code = window.editor.getValue();
     const language = document.getElementById('language').value;
-    const response = await fetch('/compile', {
+    const requestBody = {
+        language: language,
+        version: '*',
+        files: [{ name: 'code', content: code }]
+    };
+    const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: code, language: language })
+        body: JSON.stringify(requestBody)
     });
     const result = await response.json();
     const outputBox = document.getElementById('output');
-    outputBox.textContent = result.output || 'No output or error to display.';
+    outputBox.textContent = result.run.output || 'No output or error to display.';  
 }
 
 

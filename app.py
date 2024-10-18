@@ -302,6 +302,7 @@ def submitCode():
 
 @app.route('/submitSolution', methods=['POST'])
 def submitSolution():
+    # session.rollback()
     if 'user' not in session:
         return redirect(url_for('info'))
     data = request.json
@@ -482,7 +483,7 @@ def existingSolution():
         
         if existing_code is not None:
             code = existing_code.solution
-            print(f"Existing solution: {code}")
+            # print(f"Existing solution: {code}")
         else:
             code =""
         
