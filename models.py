@@ -1,16 +1,17 @@
 from sqlalchemy import create_engine,Column,Integer,String,Boolean,ForeignKey,Text
 from sqlalchemy.orm import declarative_base
 
-engine = create_engine('mysql://root@localhost:3306/codequest')
+# engine = create_engine('mysql://root@localhost:3306/codequest')
+engine = create_engine('mysql+pymysql://sql12737473:3XTQfMGrDY@sql12.freesqldatabase.com/sql12737473')
 
 Base = declarative_base()
 
 class User(Base):
-    __tablename__ = "User"
+    __tablename__ = "user"
     
-    username = Column(String,primary_key=True)
+    username = Column(String(30),primary_key=True)
     password = Column(String(128),nullable=False)
-    email = Column(String,nullable=False)
+    email = Column(String(45),nullable=False)
     total_score = Column(Integer ,default = 0)
     streak = Column(Integer,default = 0)
     notification = Column(Boolean,default = 0)
@@ -30,17 +31,17 @@ class Difficulty(Base):
     points = Column(Integer)
     
 class Question(Base):
-    __tablename__ = "Question"
+    __tablename__ = "question"
     
     question_id = Column(Integer,primary_key=True)
     question_title = Column(String(50), nullable=False)
     question_description = Column(Text, nullable=False)
     difficulty_id = Column(Integer,ForeignKey('difficulty.difficulty_id'))
-    test_cases = Column(String)
+    test_cases = Column(String(255))
     
     
 class Solution(Base):
-    __tablename__ = "Solution"
+    __tablename__ = "solution"
     solution_id = Column(Integer,primary_key=True)
     solution = Column(String,nullable=False)
     is_valid = Column(Boolean,default=False)
@@ -51,7 +52,7 @@ class Solution(Base):
     
 
 class Query(Base):
-    __tablename__ = "Query"
+    __tablename__ = "query"
     
     query_id = Column(Integer,primary_key=True)
     query = Column(String(30))
@@ -59,7 +60,7 @@ class Query(Base):
     language_id = Column(Integer)
    
 class Comment(Base):
-    __tablename__ = "Comment"
+    __tablename__ = "comment"
     
     comment_id = Column(Integer,primary_key=True)
     query_id = Column(Integer,ForeignKey('Query.query_id'))
@@ -80,4 +81,4 @@ class SolutionQuestion(Base):
     question_id = Column(Integer,ForeignKey('Question.question_id'),primary_key=True)
     solution_id = Column(Integer,ForeignKey('Solution.solution_id'),primary_key=True)
     
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)

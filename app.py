@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for,se
 from bcrypt import hashpw, checkpw, gensalt
 import re
 # from pistonpy import PistonApp
-import requests
+# import requests
 import google.generativeai as genai
 import os
 from models import engine,User,Solution,Question,Query,Language,Difficulty,SolutionQuestion,Comment
@@ -32,19 +32,13 @@ sql_session = Session(bind=engine)
 # app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER')
 # app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
 # app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB')
-app.config['MYSQL_HOST'] = 'sql12.freesqldatabase.com'
-app.config['MYSQL_USER'] = 'sql12737473'
-app.config['MYSQL_PASSWORD'] = '3XTQfMGrDY'
-app.config['MYSQL_DB'] = 'sql12737473'
+# app.config['MYSQL_HOST'] = 'sql12.freesqldatabase.com'
+# app.config['MYSQL_USER'] = 'sql12737473'
+# app.config['MYSQL_PASSWORD'] = '3XTQfMGrDY'
+# app.config['MYSQL_DB'] = 'sql12737473'
 
 
-connection = pymysql.connect(
-    host=app.config['MYSQL_HOST'],
-    user=app.config['MYSQL_USER'],
-    password=app.config['MYSQL_PASSWORD'],
-    db=app.config['MYSQL_DB'],
-    cursorclass=pymysql.cursors.DictCursor
-)
+
 
 
 
