@@ -309,3 +309,13 @@ function startAutoSlide() {
 // setInterval(() => {
 //     plusSlides(1);
 // }, 4000);
+
+
+// Check if the user has already seen the alert during this session
+if (!sessionStorage.getItem('landscapeAlertShown')) {
+    // Show the alert
+    alert('Please use in landscape mode for better experience');
+
+    // Set the flag in sessionStorage so the alert won't show again in this session
+    sessionStorage.setItem('landscapeAlertShown', 'true');
+}
