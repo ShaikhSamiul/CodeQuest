@@ -1,20 +1,20 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for,session
 from bcrypt import hashpw, checkpw, gensalt
 import re
-from pistonpy import PistonApp
+# from pistonpy import PistonApp
 import requests
 import google.generativeai as genai
 import os
 from models import engine,User,Solution,Question,Query,Language,Difficulty,SolutionQuestion,Comment
 from sqlalchemy.orm import sessionmaker
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
 from sqlalchemy import func
 from abc import abstractproperty, ABC
 
 import pymysql
 pymysql.install_as_MySQLdb()
 
-piston = PistonApp()
+# piston = PistonApp()
 genai.configure(api_key="AIzaSyAhV_8PlrMYS4PjquhF0RqrshWMkke1jiI")
 # genai.configure(api_key=os.environ.get("GENAI_API_KEY"))
 model = genai.GenerativeModel("gemini-1.5-flash")
@@ -38,7 +38,13 @@ app.config['MYSQL_PASSWORD'] = '3XTQfMGrDY'
 app.config['MYSQL_DB'] = 'sql12737473'
 
 
-mysql = MySQL(app)
+connection = pymysql.connect(
+    host=app.config['MYSQL_HOST'],
+    user=app.config['MYSQL_USER'],
+    password=app.config['MYSQL_PASSWORD'],
+    db=app.config['MYSQL_DB'],
+    cursorclass=pymysql.cursors.DictCursor
+)
 
 
 
@@ -241,40 +247,40 @@ def submitQuery():
     else:
         return jsonify(success=False, message='Unable to post query'), 401
 
-@app.route('/compile', methods=['POST'])
-def compile_code():
-    if "user" not in session:
-        return redirect(url_for('info'))
-    data = request.json
-    code = data.get('code', '')
-    language = data.get('language', 'python')
+# @app.route('/compile', methods=['POST'])
+# def compile_code():
+#     if "user" not in session:
+#         return redirect(url_for('info'))
+#     data = request.json
+#     code = data.get('code', '')
+#     language = data.get('language', 'python')
     
 
-    # Piston API URL
-    piston_url = "https://emkc.org/api/v2/piston/execute"
+#     # Piston API URL
+#     piston_url = "https://emkc.org/api/v2/piston/execute"
 
-    # API payload
-    payload = {
-        "language": language,
-        "version": "*",  # Latest version of the language
-        "files": [{"name": "code", "content": code}]   
-    }
+#     # API payload
+#     payload = {
+#         "language": language,
+#         "version": "*",  # Latest version of the language
+#         "files": [{"name": "code", "content": code}]   
+#     }
 
-    try:
-        # Make the API request
-        response = requests.post(piston_url, json=payload)
-        response_data = response.json()
+#     try:
+#         # Make the API request
+#         response = requests.post(piston_url, json=payload)
+#         response_data = response.json()
 
-        # Extract output from API response
-        if 'run' in response_data:
-            output = response_data['run']['stdout'] + response_data['run']['stderr']
-        else:
-            output = "No output generated or execution failed."
+#         # Extract output from API response
+#         if 'run' in response_data:
+#             output = response_data['run']['stdout'] + response_data['run']['stderr']
+#         else:
+#             output = "No output generated or execution failed."
 
-    except Exception as e:
-        output = f"An error occurred: {str(e)}"
+#     except Exception as e:
+#         output = f"An error occurred: {str(e)}"
 
-    return jsonify({"output": output})
+#     return jsonify({"output": output})
 
 @app.route('/submitCode', methods=['POST'])
 def submitCode():
