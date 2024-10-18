@@ -443,3 +443,51 @@ button:hover {
     right: 10px;
     top: 10px;
 }
+
+.overlay {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    z-index: 9999; /* Ensure it's on top */
+}
+
+.overlay video {
+    max-width: 100%;  /* Ensure the video never exceeds the screen width */
+    max-height: 100%; /* Ensure the video never exceeds the screen height */
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Ensures the entire video is shown within its container */
+}
+
+.content {
+    display: block; /* Show content by default */
+}
+
+/* Portrait mode: Show the overlay and hide main content */
+@media (orientation: portrait) {
+    .overlay {
+        display: flex;
+    }
+    .content {
+        display: none;
+    }
+}
+
+/* Landscape mode: Hide the overlay and show main content */
+@media (orientation: landscape) {
+    .overlay {
+        display: none;
+    }
+    .content {
+        display: block;
+    }
+}

@@ -34,3 +34,20 @@ document.getElementById('themeToggle').addEventListener('change', function () {
 // });
 
 
+// function checkOrientation() {
+//     const overlay = document.getElementById('portraitOverlay');
+//     const mainContent = document.getElementById('mainContent');
+
+//     if (window.matchMedia("(orientation: portrait)").matches) {
+//         overlay.style.display = 'flex';  // Show video overlay
+//         mainContent.style.display = 'none';  // Hide main content
+//     } else {
+//         overlay.style.display = 'none';  // Hide video overlay
+//         mainContent.style.display = 'block';  // Show main content
+//     }
+// }
+
+
+
+// // Listen for orientation change
+// window.addEventListener('orientationchange', checkOrientation);

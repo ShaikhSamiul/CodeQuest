@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
 </head>
 <body class="dark-theme">
-    
+    <div class="overlay" id="portraitOverlay">
+        <video autoplay muted loop>
+            <source src="/static/videos/phone-rotate.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="content" id="mainContent">
     <div class="navbar">
         <div class="logo">
             <a href="" id='logo_link'><img src="/static/images/CodeQuest.png" id="logo_img" 
@@ -103,7 +110,7 @@
     </div>
     
 
-
+</div>
     <script src="{{ url_for('static', filename='script/info.js') }}"></script>
     
 </body>
