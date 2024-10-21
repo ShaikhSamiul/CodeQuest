@@ -91,7 +91,7 @@ def comments(query_id):
         return redirect(url_for('info'))
 
     query = sql_session.query(Query).filter_by(query_id = query_id).first()
-    if (query.username == session["user"]):
+    if (query.username.lower() == session["user"].lower()):
         asker = True
     else:
         asker = False
