@@ -2,7 +2,8 @@ from sqlalchemy import create_engine,Column,Integer,String,Boolean,ForeignKey,Te
 from sqlalchemy.orm import declarative_base
 
 # engine = create_engine('mysql+pymysql://root@localhost:3306/codequest')
-engine = create_engine('mysql+pymysql://sql12737473:3XTQfMGrDY@sql12.freesqldatabase.com/sql12737473')
+# engine = create_engine('mysql+pymysql://sql12737473:3XTQfMGrDY@sql12.freesqldatabase.com/sql12737473')
+engine = create_engine('mysql+pymysql://samiul:SamVarsha2418@mysql-samiul.alwaysdata.net/samiul_codequest')
 
 Base = declarative_base()
 
