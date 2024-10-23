@@ -312,10 +312,32 @@ function startAutoSlide() {
 
 
 // Check if the user has already seen the alert during this session
-if (!sessionStorage.getItem('landscapeAlertShown')) {
-    // Show the alert
-    alert('Please use in landscape mode for better experience');
+// if (!sessionStorage.getItem('landscapeAlertShown')) {
+//     // Show the alert
+//     alert('Please use in landscape mode for better experience');
 
-    // Set the flag in sessionStorage so the alert won't show again in this session
-    sessionStorage.setItem('landscapeAlertShown', 'true');
+//     // Set the flag in sessionStorage so the alert won't show again in this session
+//     sessionStorage.setItem('landscapeAlertShown', 'true');
+// }
+
+
+let isPortrait = window.innerWidth < window.innerHeight; // Initial state
+
+function checkOrientation() {
+    const currentlyPortrait = window.innerWidth < window.innerHeight;
+
+    // If switching to portrait mode and was previously not in portrait
+    if (currentlyPortrait && !isPortrait) {
+        // alert('Please use the website in landscape mode.');
+    }
+
+    // Update the isPortrait flag to the current state
+    isPortrait = currentlyPortrait;
 }
+
+// Check orientation on page load
+checkOrientation();
+
+// Listen for window resize (to detect orientation changes)
+window.addEventListener('resize', checkOrientation);
+

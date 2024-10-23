@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
 </head>
 <body class="dark-theme">
+    <div class="portraitOverlay" id="portraitOverlay">
+        <video autoplay muted loop>
+            <source src="/static/videos/phone-rotate.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="content" id="mainContent">
+
     
     <div class="navbar">
         <div class="logo">
@@ -35,34 +44,6 @@
     </div>
     <div class="overlay"></div>
 
-    <!-- Floating Sign Up Form -->
-    <div class="form-box" id="signupForm">
-        <span class="close-btn" id="closeSignupBtn">&times;</span>
-        <h2>Sign Up</h2>
-        <form id="signupFormInner" method="post" action="/signup">
-            <input type="text" name="username" id="signup-username" placeholder="Username" required>
-            <span id="available"></span>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <span id="available-email"></span>
-            <input type="password" id="signup-password" name="password" placeholder="Password" required>
-            <input type="password" id="cnf-password" name="cnf-password" placeholder="Confirm Password" required>
-            <span id="password-check"></span>
-            <button type="submit">Sign Up</button>
-            <p class="login-link">Already a user? <a id="loginLink">Login here</a></p>
-        </form>
-    </div>
-
-    <!-- Floating Login Form -->
-    <div class="form-box" id="loginForm">
-        <span class="close-btn" id="closeLoginBtn">&times;</span>
-        <h2>Login</h2>
-        <form method="POST" action="/questions">
-            <input type="text" name="username" id="username" placeholder="Username">
-            <input type="password" name="password" id="password" placeholder="Password">
-            <button id="submitLoginBtn">Login</button> <!-- Separate button for submission -->
-        </form>
-        <p class="signup-link">Don't have an account? <a id="signupLink">Sign up here</a></p>
-    </div>
     
 
 
@@ -102,8 +83,36 @@
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
     
+</div>
+<!-- Floating Sign Up Form -->
+<div class="form-box" id="signupForm">
+    <span class="close-btn" id="closeSignupBtn">&times;</span>
+    <h2>Sign Up</h2>
+    <form id="signupFormInner" method="post" action="/signup">
+        <input type="text" name="username" id="signup-username" placeholder="Username" required>
+        <span id="available"></span>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <span id="available-email"></span>
+        <input type="password" id="signup-password" name="password" placeholder="Password" required>
+        <input type="password" id="cnf-password" name="cnf-password" placeholder="Confirm Password" required>
+        <span id="password-check"></span>
+        <button type="submit">Sign Up</button>
+        <p class="login-link">Already a user? <a id="loginLink">Login here</a></p>
+    </form>
+</div>
 
+<!-- Floating Login Form -->
+<div class="form-box" id="loginForm">
+    <span class="close-btn" id="closeLoginBtn">&times;</span>
+    <h2>Login</h2>
+    <form method="POST" action="/questions">
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <button id="submitLoginBtn">Login</button> <!-- Separate button for submission -->
+    </form>
+    <p class="signup-link">Don't have an account? <a id="signupLink">Sign up here</a></p>
 
+</div>
     <script src="{{ url_for('static', filename='script/info.js') }}"></script>
     
 </body>

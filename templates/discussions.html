@@ -8,7 +8,14 @@
 
 {% endblock %} {% block content %}
   <body class="light-theme">
-    
+    <div class="portraitOverlay" id="portraitOverlay">
+      <video autoplay muted loop>
+          <source src="/static/videos/phone-rotate.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+  </div>
+
+  <div class="content" id="mainContent">
     <div class="container">
       <div class="ask-question-btn" onclick="toggleFloatingForm()">
         <span>+</span>
@@ -170,7 +177,8 @@
         </div>  
       </div>
     </div>
- 
+  </div>
+  </div>
     <script src="{{ url_for('static', filename='script/discussions.js') }}"></script>
     <script src="{{ url_for('static', filename='script/navbar.js') }}"></script>
   </body>
